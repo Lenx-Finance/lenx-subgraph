@@ -1,22 +1,12 @@
-import { NewGravatar, UpdatedGravatar } from '../generated/Gravity/Gravity'
-import { Gravatar } from '../generated/schema'
+import {BridgeWithdrawal} from "../generated/schema";
+import {WithdrawalInitiated} from "../generated/L2StandardBridge/L2StandardBridge";
 
-export function handleNewGravatar(event: NewGravatar): void {
-  let gravatar = new Gravatar(event.params.id.toHex())
-  gravatar.owner = event.params.owner
-  gravatar.displayName = event.params.displayName
-  gravatar.imageUrl = event.params.imageUrl
-  gravatar.save()
-}
-
-export function handleUpdatedGravatar(event: UpdatedGravatar): void {
-  let id = event.params.id.toHex()
-  let gravatar = Gravatar.load(id)
-  if (gravatar == null) {
-    gravatar = new Gravatar(id)
-  }
-  gravatar.owner = event.params.owner
-  gravatar.displayName = event.params.displayName
-  gravatar.imageUrl = event.params.imageUrl
-  gravatar.save()
+export function handleL2BridgeWithdrawlInitiated(event: WithdrawalInitiated): void {
+  let bridgeWithdrawl = new BridgeWithdrawal(event.address.toString())
+  bridgeWithdrawl.l1Token = event.params.l1Token
+  bridgeWithdrawl.l2Token = event.params.l2Token
+  bridgeWithdrawl.from = event.params.from
+  bridgeWithdrawl.to = event.params.to
+  bridgeWithdrawl.amount = event.params.amount
+  bridgeWithdrawl.save()
 }

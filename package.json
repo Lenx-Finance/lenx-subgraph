@@ -4,19 +4,19 @@
   "repository": "https://github.com/graphprotocol/example-subgraph",
   "license": "MIT",
   "scripts": {
-    "build-contract": "solc contracts/Gravity.sol --abi -o abis --overwrite && solc contracts/Gravity.sol --bin -o bin --overwrite",
     "create": "graph create example --node https://api.thegraph.com/deploy/",
     "create-local": "graph create example --node http://127.0.0.1:8020",
-    "codegen": "graph codegen",
+    "codegen": "graph codegen --output-dir generated",
     "build": "graph build",
     "deploy": "graph deploy example --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/",
     "deploy-local": "graph deploy example --ipfs http://127.0.0.1:5001 --node http://127.0.0.1:8020"
   },
+  "packageManager": "pnpm@8.14.3",
   "devDependencies": {
-    "@graphprotocol/graph-cli": "^0.30.2",
     "@graphprotocol/graph-ts": "^0.27.0"
   },
   "dependencies": {
+    "@graphprotocol/graph-cli": "^0.69.0",
     "babel-polyfill": "^6.26.0",
     "babel-register": "^6.26.0",
     "truffle": "^5.0.4",

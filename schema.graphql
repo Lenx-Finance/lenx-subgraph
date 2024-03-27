@@ -4,3 +4,17 @@ type Gravatar @entity {
   displayName: String!
   imageUrl: String!
 }
+
+type BridgeWithdrawal @entity {
+  id: ID!
+  l1Token: Bytes!
+  l2Token: Bytes!
+  from: Bytes!
+  to: Bytes!
+  amount: BigInt!
+}
+
+type User @entity {
+  id: ID!
+  bridgeWithdrawals: [BridgeWithdrawal!]
+}

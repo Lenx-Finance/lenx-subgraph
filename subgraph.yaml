@@ -1,27 +1,25 @@
-specVersion: 0.0.2
-description: Gravatar for Ethereum
-repository: https://github.com/graphprotocol/example-subgraph
+specVersion: 0.0.4
+description: LENX Subgraph
+repository: https://github.com/Lenx-Finance/lenx-subgraph
 schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
-    name: Gravity
+    name: L2StandardBridge
     network: mainnet
     source:
-      address: '0x2E645469f354BB4F5c8a05B3b30A929361cf77eC'
-      abi: Gravity
+      address: '0x4200000000000000000000000000000000000010'
+      abi: L2StandardBridge
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
-        - Gravatar
+        - L2StandardBridge
       abis:
-        - name: Gravity
-          file: ./abis/Gravity.json
+        - name: L2StandardBridge
+          file: ./abis/L2StandardBridge.json
       eventHandlers:
-        - event: NewGravatar(uint256,address,string,string)
-          handler: handleNewGravatar
-        - event: UpdatedGravatar(uint256,address,string,string)
-          handler: handleUpdatedGravatar
+        - event: WithdrawalInitiated(indexed address,indexed address,indexed address,address,uint256,bytes)
+          handler: handleL2BridgeWithdrawlInitiated
       file: ./src/mapping.ts
